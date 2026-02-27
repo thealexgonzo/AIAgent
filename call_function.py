@@ -1,3 +1,4 @@
+import os
 from google.genai import types
 from functions.get_files_info import schema_get_files_info, get_files_info
 from functions.get_file_content import schema_get_file_content, get_file_content
@@ -36,7 +37,7 @@ def call_function(function_call, verbose=False):
     
     args = dict(function_call.args) if function_call.args else {}
 
-    args["working_directory"] = "./calculator"
+    args["working_directory"] = os.getcwd()
 
     function_result = function_map[function_name](**args)
 
